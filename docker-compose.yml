@@ -1,0 +1,46 @@
+version: "3"
+
+networks:
+  service_network:
+    name: service_network
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.20.0.0/16
+        
+volumes:
+  library:
+
+services:
+  app:
+    tty: true
+    restart: always
+    image: thideki/alpine-laravel9:init
+    volumes:
+      - ./src:/opt/html
+      - ./logs/nginx:/var/log/nginx
+      - ./logs/php:/var/log/php8
+      - library:/opt/html/node_modules
+      - library:/opt/html/vendor
+    ports: ["8080:80"]
+    networks:
+      service_network:
+        ipv4_address: 172.20.0.2
+
+  db:
+    tty: true
+    restart: always
+    build: ./mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=pass
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=pass
+    volumes:
+      - ./mysql/mysql.cnf:/etc/mysql/conf.d/mysql.cnf
+      - ./mysql/data:/var/lib/mysql
+      - ./mysql/mysqldump:/opt/mysqldump
+      - ./logs/mysql:/var/log/mysql
+    networks:
+      service_network:
+        ipv4_address: 172.20.0.3

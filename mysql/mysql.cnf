@@ -1,0 +1,45 @@
+[mysqld]
+# デフォルトの文字コードUTF-8
+character-set-server=utf8
+
+# システムの日付設定を使用する
+log_timestamps=SYSTEM
+
+# デフォルトでInnoDB
+default-storage-engine=InnoDB
+
+# 最大同時接続数
+max-connections=200
+
+# クエリログ
+general_log=ON
+general_log_file=/var/log/mysql/general-query.log
+
+# binログ
+log-bin=bin-log
+# binログの保存期間
+expire_logs_days=7
+
+# スロークエリログ
+long-query-time=2
+slow_query_log=ON
+slow_query_log_file=/var/log/mysql/slow.log
+
+# 実行エラーログ
+log-error=/var/log/mysql/error.log
+
+[mysql]
+default-character-set=utf8
+
+[client]
+default-character-set=utf8
+
+[mysqldump]
+quick
+
+[mysqld_safe]
+# エラーログ出力設定
+log-error=/var/log/mysql/safe_error.log
+
+# PIDファイル
+pid-file=/var/run/mysqld/mysqld.pid
