@@ -15,7 +15,7 @@ A boilerplate for easily building a Laravel + MySQL web application execution en
 - Docker Compose  
 - Git  
 
-## Setup
+## Usage
 ### Copy .env
     cp -p ./src/.env.example ./src/.env
 
