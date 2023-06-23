@@ -17,14 +17,16 @@ services:
   app:
     tty: true
     restart: always
-    image: thideki/alpine-laravel9:init
+    build: ./xdebug
     volumes:
       - ./src:/opt/html
       - ./logs/nginx:/var/log/nginx
       - ./logs/php:/var/log/php8
       - node_library:/opt/html/node_modules
       - vendor_library:/opt/html/vendor
-    ports: ["8080:80"]
+    ports: 
+      - "8080:80"
+      - "9003:9003"
     networks:
       service_network:
         ipv4_address: 172.20.0.2
