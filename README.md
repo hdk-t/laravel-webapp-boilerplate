@@ -4,9 +4,8 @@ A boilerplate for easily building a Laravel + MySQL web application execution en
 
 ## Container Environment
 - Application  
-    - Laravel - 9.30.1  
-    - PHP - 8.0.21  
-    - Nginx - 1.22.0  
+    - Laravel - 10.31.0
+    - PHP - 8.1.25
 - Database
     - MySQL - 8.0.27  
 

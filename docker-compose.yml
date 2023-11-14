@@ -17,7 +17,7 @@ services:
   app:
     tty: true
     restart: always
-    image: thideki/alpine-laravel9:init
+    image: thideki/alpine-laravel:10x
     volumes:
       - ./src:/opt/html
       - ./logs/nginx:/var/log/nginx
