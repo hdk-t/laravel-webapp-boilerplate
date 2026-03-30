@@ -4,10 +4,11 @@ A boilerplate for easily building a Laravel + MySQL web application execution en
 
 ## Container Environment
 - Application  
-    - Laravel - 10.31.0
-    - PHP - 8.1.25
+    - Frankenphp: 1
+    - Laravel: 13
+    - PHP: 8.5
 - Database
-    - MySQL - 8.0.27  
+    - MySQL: 8.0.27  
 
 ## Host Required
 - Docker
@@ -24,27 +25,16 @@ A boilerplate for easily building a Laravel + MySQL web application execution en
 ### Install library
     docker exec -it laravel-webapp-boilerplate_app_1 composer install
 
+### Permission settings
+    docker exec -it laravel-webapp-boilerplate_app_1 chown -R www-data:www-data /app/storage /app/bootstrap/cache
+
 ### Generate APP_KEY
     docker exec -it laravel-webapp-boilerplate_app_1 php artisan key:generate
 
-### Acccess laravel wellcomepage
-http://localhost:8080
+### Database Setting
+    docker exec -it laravel-webapp-boilerplate_db_1 mysql -u root -ppass  
+    mysql> GRANT ALL ON *.* TO user;  
+    mysql> CREATE DATABASE test;  
 
-## If you use x-debug
-### Launch the containers
-    docker-compose -f ./docker-compose.xdebug.yml up -d
-    
-### Add vscode configurations  
-```js:./vscode/launch.json
-"configurations": [
-    {
-        "name": "XDebug on alpine-laravel9-docker",
-        "type": "php",
-        "request": "launch",
-        "port": 9003,
-        "pathMappings": {
-            "/opt/html": "{YOUR_WORKSPACE_PATH}/laravel-webapp-boilerplate/src"
-        }
-    }
-]
-```
+### Acccess laravel wellcomepage
+http://localhost

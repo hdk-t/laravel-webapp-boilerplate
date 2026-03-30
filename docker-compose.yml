@@ -17,14 +17,14 @@ services:
   app:
     tty: true
     restart: always
-    image: thideki/alpine-laravel:10x
+    image: thideki/frankenphp-laravel:latest
     volumes:
-      - ./src:/opt/html
+      - ./src:/app
       - ./logs/nginx:/var/log/nginx
       - ./logs/php:/var/log/php8
-      - node_library:/opt/html/node_modules
-      - vendor_library:/opt/html/vendor
-    ports: ["8080:80"]
+      - node_library:/app/node_modules
+      - vendor_library:/app/vendor
+    ports: ["80:80"]
     networks:
       service_network:
         ipv4_address: 172.20.0.2
